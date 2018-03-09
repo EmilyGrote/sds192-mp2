@@ -2,11 +2,13 @@
 title: "Hello, its me"
 author: "Emily"
 date: "3/7/2018"
-output: html_document
+output: 
+  html_document:
+    code_folding: hide
 ---
 
 This chunck loads the tidyverse:
-```{r}
+```{r message=FALSE}
 library(tidyverse)
 ```
 
