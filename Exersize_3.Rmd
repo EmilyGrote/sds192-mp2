@@ -12,6 +12,8 @@ This chunck loads the tidyverse:
 library(tidyverse)
 ```
 
+[LINK TO MINI-PROJECT 2 DESCRIPTION](https://beanumber.github.io/sds192/mod_data.html)
+
 This chunck loads all the files available for the project through 
 ```{r}
 load("house_elections.rda")
