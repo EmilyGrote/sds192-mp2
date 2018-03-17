@@ -1,6 +1,6 @@
 ---
 title: "Hello, its me"
-author: "Emily"
+author: "Emily and Stephanie"
 date: "3/7/2018"
 output: 
   html_document:
@@ -21,3 +21,45 @@ load("candidates.rda")
 load("committees.rda")
 load("contributions.rda")
 ```
+
+
+Current Plan:
+
+Design a function to see which top ~5 commities contributed, how much they contributed, and which party the commitie is affiliated with.  Then graph this information in the best way possible.  Then use a facet to graph multiple politians at one time on the same figure.  
+
+
+Things To Use for Points:
+
+* 2 of the 5 basic words (select(),  mutate(), etc)
+* Using a Join 
+* If we use a function for this, there is a bonus point involved.  If we start with a function design from the begining, this point will be easier 
+
+Starting to write a function designed to give a tbl for the top 5 committees
+```{r}
+
+TopFive<-function(name_arg){
+  candidates %>%
+  filter(can_name==name_arg)
+  
+}
+```
+I think the general plan could be (sorry for spelling errors):
+
+I think Joining Candidates and contributions by Cand_ID is a good plan 
+
+Candidate name = Candidate ID  %>%
+Donations for the Candidates from Conrtibutions using Candidate ID  %>%
+Referencing back to commitiees data set for the name for committee ID = Commitee name %>%
+Sorting descending popularity %>%
+head(5)
+
+Generic Plotting Plan:
+$ = y-axis
+committee = x-axis 
+Color of Bars = Political Party 
+
+
+
+
+
+
