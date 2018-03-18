@@ -1,5 +1,5 @@
 ---
-title: "Hello, its me"
+title: "Mini-Project-2"
 author: "Emily and Stephanie"
 date: "3/7/2018"
 output: 
@@ -30,19 +30,14 @@ Design a function to see which top ~5 commities contributed, how much they contr
 
 Things To Use for Points:
 
-* 2 of the 5 basic words (select(),  mutate(), etc)
+* 2 of the 5 basic words (select(),  mutate(), etc.)
 * Using a Join 
 * If we use a function for this, there is a bonus point involved.  If we start with a function design from the begining, this point will be easier 
 
-Starting to write a function designed to give a tbl for the top 5 committees
-```{r}
 
-TopFive<-function(name_arg){
-  candidates %>%
-  filter(can_name==name_arg)
-  
-}
-```
+
+
+
 I think the general plan could be (sorry for spelling errors):
 
 I think Joining Candidates and contributions by Cand_ID is a good plan 
@@ -89,8 +84,9 @@ The top 4 commitees that contibuted to Nacy Pelosi were commitees that fundraise
 
 
 
+
 Respons New:
-This looks like a really GREAT start! Im going to plot the tbl you made and then see if I can generalize your code into a function:
+This looks like a really GREAT start! I'm going to plot the tbl you made and then see if I can generalize your code into a function:
 
 Chunk below, graphs a bar bones plot.  We need one more variable, the party affiliation of the commitee, so I will see What I can do about trying to add it to the CAND_CONTR_COMM tbl
 ```{r}
@@ -101,12 +97,21 @@ ggplot(cand_contr_comm, aes(x=name, y=sum))+
 
 
 
-Below I started working on a generalized Function that makes the tbl (#1 step at a time):
 
+
+
+Below I started working on a generalized Function that makes the tbl (#1 step at a time):
+(Be warnded its a mess)
 
 Makes a large table that joins the data by candidates (In theory this is like the step you did just for Nancy Pelosi, so we should be able to)
+
 ```{r}
-cand_contrULTRA <- left_join(candidates, contributions) 
+cand_contr_start <- candidates %>%
+  select(cand_id,cand_name, cand_party_affiliation)
+```
+
+```{r}
+cand_contrULTRA <- left_join(cand_contr_start, contributions) 
 ```
 
 This gives a master list with all candidates, cand_id, candidates party affiliation, the name of each donation, donation amount, and the type of organization each donation is 
@@ -116,16 +121,28 @@ cand_cantrULTRA2 <- left_join(cand_contrULTRA, committees) %>%
 ```
 
 
+
 Below, I am working on trying to make the function, but im already encountering a problem, the output has zero rows... I'm not sure why though
 ```{r}
 top_5 <- function(name_arg) {
   cand_cantrULTRA2 %>%
-  filter(cand_name == 'name_arg')
+    group_by(cand_name)%>%
+    filter(cand_name=='name_arg') %>%
+  head(5)
 }
 
-Nancy<- top_5('PELOSI, NANCY')
-Nancy
+ROBY<- top_5('ROBY, MARTHA')
+ROBY
 ```
+
+
+
+
+
+
+
+
+
 
 
 
