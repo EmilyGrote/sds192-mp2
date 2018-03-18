@@ -88,12 +88,45 @@ select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt) %>%
 The top 4 commitees that contibuted to Nacy Pelosi were commitees that fundraised exlussively for her.  The fifth looks like a group that fundraises for Democrats.  Overall, this isn't very interesting.  Maybe we can look at Republicans and see if they took money from the NRA.  Let me know what you think!  
 
 
+
 Respons New:
-This looks really GREAT! Im going to plot the tbl you made and then see if I can generalize your code into a function:
+This looks like a really GREAT start! Im going to plot the tbl you made and then see if I can generalize your code into a function:
+
+Chunk below, graphs a bar bones plot.  We need one more variable, the party affiliation of the commitee, so I will see What I can do about trying to add it to the CAND_CONTR_COMM tbl
 ```{r}
 ggplot(cand_contr_comm, aes(x=name, y=sum))+
-  geom_point()
-
+  geom_histogram(stat="identity") + 
+  labs(y="Dollars Contributed", title="Committee Contribution to Nancy Pelosi")
 ```
+
+
+
+Below I started working on a generalized Function that makes the tbl (#1 step at a time):
+
+
+Makes a large table that joins the data by candidates (In theory this is like the step you did just for Nancy Pelosi, so we should be able to)
+```{r}
+cand_contrULTRA <- left_join(candidates, contributions) 
+```
+
+This gives a master list with all candidates, cand_id, candidates party affiliation, the name of each donation, donation amount, and the type of organization each donation is 
+```{r}
+cand_cantrULTRA2 <- left_join(cand_contrULTRA, committees) %>%
+  select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt, entity_type) 
+```
+
+
+Below, I am working on trying to make the function, but im already encountering a problem, the output has zero rows... I'm not sure why though
+```{r}
+top_5 <- function(name_arg) {
+  cand_cantrULTRA2 %>%
+  filter(cand_name == 'name_arg')
+}
+
+Nancy<- top_5('PELOSI, NANCY')
+Nancy
+```
+
+
 
 
