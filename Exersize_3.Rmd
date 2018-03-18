@@ -58,8 +58,33 @@ $ = y-axis
 committee = x-axis 
 Color of Bars = Political Party 
 
+NEW:
 
 
+For the following code I selected the columns we care about for Nancy Pelosi to see what it looks like for one candidate and to shrink the dataset.
 
+```{r}
+NancyPelosi <- candidates %>%
+  select(cand_id, cand_name, cand_party_affiliation) %>%
+  filter(cand_name == 'PELOSI, NANCY')
+```
+
+I joined two of the three tables that we want
+
+```{r}
+cand_contr <- left_join(NancyPelosi, contributions)
+```
+
+Here I joined the third table, grouped by the name of the commitee, summarized the contirbution amounts and displayed the top 5.
+
+```{r}
+cand_contr_comm <- left_join(cand_contr, committees) %>%
+select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt) %>%
+  group_by(name) %>%
+  summarise(sum = sum(transaction_amt)) %>%
+  top_n(5)
+```
+
+The top 4 commitees that contibuted to Nacy Pelosi were commitees that fundraised exlussively for her.  The fifth looks like a group that fundraises for Democrats.  Overall, this isn't very interesting.  Maybe we can look at Republicans and see if they took money from the NRA.  Let me know what you think!  
 
 
