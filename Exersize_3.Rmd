@@ -75,6 +75,7 @@ Here I joined the third table, grouped by the name of the commitee, summarized t
 
 I changed this chunk, in order to have commitee party affiliation for the graph in the next chunch, the summmerize had to be changed to mutate.  This stopped top_n() from working, so I changed it to arrange and head.  Then I thought you could use distinct(sum) to get rid off all of the reapeating sum values, but now its the same problem I was trying to avoid 
 
+
 ```{r}
 cand_contr_comm <- left_join(cand_contr, committees) %>%
   select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt, cmte_party_affiliation) %>%
@@ -142,7 +143,8 @@ cand_cantrULTRA2 <- left_join(cand_contrULTRA, committees) %>%
 
 
 
-Below, I am working on trying to make the function, but im already encountering a problem, the output has zero rows... I'm not sure why though
+Below, I am working on trying to make the function, but im already encountering a problem, the output has zero rows... I'm not sure why though. 
+[^1]
 ```{r}
 top_5 <- function(name_arg) {
   cand_cantrULTRA2 %>%
@@ -157,13 +159,6 @@ ROBY
 
 
 
-
-
-
-
-
-
-
-
+[^1]: HERE IS A FOOT
 
 
