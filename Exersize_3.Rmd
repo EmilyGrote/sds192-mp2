@@ -138,7 +138,10 @@ cand_contrULTRA <- left_join(cand_contr_start, contributions)
 This gives a master list with all candidates, cand_id, candidates party affiliation, the name of each donation, donation amount, and the type of organization each donation is 
 ```{r}
 cand_cantrULTRA2 <- left_join(cand_contrULTRA, committees) %>%
-  select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt, entity_type, cmte_party_affiliation)
+  select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt, entity_type, cmte_party_affiliation) %>%
+  mutate(sum = sum(transaction_amt)) %>%
+  select(cand_id, cand_name, cand_party_affiliation, name, cmte_party_affiliation, sum) %>%
+  distinct(sum,cand_id, cand_name, cand_party_affiliation, name, cmte_party_affiliation) 
 ```
 
 
@@ -149,11 +152,11 @@ Below, I am working on trying to make the function, but im already encountering 
 top_5 <- function(name_arg) {
   cand_cantrULTRA2 %>%
     filter(cand_name == name_arg) %>%
-    group_by(cand_name) %>%
-    top_n(5)
+      arrange(desc(sum)) %>%
+      head(5)
+  
 }
-
-ROBY<- top_5('ROBY, MARTHA')
+ROBY <- top_5( "ROBY, MARTHA")
 ROBY
 ```
 
