@@ -108,8 +108,8 @@ This looks like a really GREAT start! I'm going to plot the tbl you made and the
 
 Chunk below, graphs a bar bones plot.  We need one more variable, the party affiliation of the commitee, so I will see What I can do about trying to add it to the CAND_CONTR_COMM tbl
 ```{r}
-ggplot(cand_contr_comm, aes(x=name, y=sum))+
-  geom_histogram(stat="identity", aes(fill="cmte_party_affiliation")) + 
+ggplot(cand_contr_comm, aes(x=name, y=sum, fill="cmte_party_affiliation"))+
+  geom_histogram(stat="identity") + 
   labs(y="Dollars Contributed", title="Committee Contribution to Nancy Pelosi")
 ```
 
