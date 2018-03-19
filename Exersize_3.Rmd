@@ -82,7 +82,8 @@ cand_contr_comm <- left_join(cand_contr, committees) %>%
   mutate(sum = sum(transaction_amt)) %>%
   select(cand_id, cand_name, cand_party_affiliation, name, cmte_party_affiliation, sum) %>%
   distinct(sum,cand_id, cand_name, cand_party_affiliation, name, cmte_party_affiliation) %>%
-  arrange(desc(sum))
+  arrange(desc(sum)) %>%
+  head(5)
 ```
 
 
@@ -143,8 +144,8 @@ Below, I am working on trying to make the function, but im already encountering 
 ```{r}
 top_5 <- function(name_arg) {
   cand_cantrULTRA2 %>%
-    group_by(cand_name) %>%
     filter(cand_name == 'name_arg') %>%
+    group_by(cand_name) %>%
     top_n(5)
 }
 
