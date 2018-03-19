@@ -73,7 +73,7 @@ cand_contr <- left_join(NancyPelosi, contributions)
 Here I joined the third table, grouped by the name of the commitee, summarized the contirbution amounts and displayed the top 5.
 
 
-I changed this chunk, in order to have commitee party affiliation for the graph in the next chunch, the summmerize had to be changed to mutate.  This stopped top_n() from working, so I changed it to arrange and head.  Then using distinct(sum) it gets rid off all of the reapeating sum values   
+I changed this chunk, in order to have commitee party affiliation for the graph in the next chunch, the summmerize had to be changed to mutate.  This stopped top_n() from working, so I changed it to arrange and head.  Then I thought you could use distinct(sum) to get rid off all of the reapeating sum values, but now its the same problem I was trying to avoid 
 
 ```{r}
 cand_contr_comm <- left_join(cand_contr, committees) %>%
@@ -81,7 +81,9 @@ cand_contr_comm <- left_join(cand_contr, committees) %>%
   group_by(name) %>%
   mutate(sum = sum(transaction_amt)) %>%
   arrange(desc(sum)) %>%
+  
   distinct(sum) %>%
+  
   head(5)
 ```
 
@@ -108,7 +110,7 @@ This looks like a really GREAT start! I'm going to plot the tbl you made and the
 Chunk below, graphs a bar bones plot.  We need one more variable, the party affiliation of the commitee, so I will see What I can do about trying to add it to the CAND_CONTR_COMM tbl
 ```{r}
 ggplot(cand_contr_comm, aes(x=name, y=sum))+
-  geom_histogram(stat="identity") + 
+  geom_histogram(stat="identity", aes(fill="cmte_party_affiliation")) + 
   labs(y="Dollars Contributed", title="Committee Contribution to Nancy Pelosi")
 ```
 
