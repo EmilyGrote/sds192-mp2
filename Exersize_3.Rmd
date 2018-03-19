@@ -128,6 +128,8 @@ cand_contr_start <- candidates %>%
   select(cand_id,cand_name, cand_party_affiliation)
 ```
 
+
+
 ```{r}
 cand_contrULTRA <- left_join(cand_contr_start, contributions) 
 ```
