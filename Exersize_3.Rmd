@@ -72,15 +72,32 @@ cand_contr <- left_join(NancyPelosi, contributions)
 
 Here I joined the third table, grouped by the name of the commitee, summarized the contirbution amounts and displayed the top 5.
 
+
+I changed this chunk, in order to have commitee party affiliation for the graph in the next chunch, the summmerize had to be changed to mutate.  This stopped top_n() from working, so I changed it to arrange and head.  Then using distinct(sum) it gets rid off all of the reapeating sum values   
+
 ```{r}
 cand_contr_comm <- left_join(cand_contr, committees) %>%
-select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt) %>%
+  select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt, cmte_party_affiliation) %>%
   group_by(name) %>%
-  summarise(sum = sum(transaction_amt)) %>%
-  top_n(5)
+  mutate(sum = sum(transaction_amt)) %>%
+  arrange(desc(sum)) %>%
+  distinct(sum) %>%
+  head(5)
 ```
 
+
+
+
 The top 4 commitees that contibuted to Nacy Pelosi were commitees that fundraised exlussively for her.  The fifth looks like a group that fundraises for Democrats.  Overall, this isn't very interesting.  Maybe we can look at Republicans and see if they took money from the NRA.  Let me know what you think!  
+
+
+
+
+UPDATE: I have some questions:
+
+I think looking at Republicans and the NRA is a good idea.
+
+My questions are about cand_contr_comm.  Why use summarize instead of mutate? Also Im not sure that sum(transaction_amt) is doing what we want it to.
 
 
 
@@ -117,7 +134,7 @@ cand_contrULTRA <- left_join(cand_contr_start, contributions)
 This gives a master list with all candidates, cand_id, candidates party affiliation, the name of each donation, donation amount, and the type of organization each donation is 
 ```{r}
 cand_cantrULTRA2 <- left_join(cand_contrULTRA, committees) %>%
-  select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt, entity_type) 
+  select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt, entity_type)
 ```
 
 
@@ -126,9 +143,9 @@ Below, I am working on trying to make the function, but im already encountering 
 ```{r}
 top_5 <- function(name_arg) {
   cand_cantrULTRA2 %>%
-    group_by(cand_name)%>%
-    filter(cand_name=='name_arg') %>%
-  head(5)
+    group_by(cand_name) %>%
+    filter(cand_name == 'name_arg') %>%
+    top_n(5)
 }
 
 ROBY<- top_5('ROBY, MARTHA')
