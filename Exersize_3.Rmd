@@ -139,6 +139,7 @@ This gives a master list with all candidates, cand_id, candidates party affiliat
 ```{r}
 cand_cantrULTRA2 <- left_join(cand_contrULTRA, committees) %>%
   select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt, entity_type, cmte_party_affiliation) %>%
+  group_by(name) %>%
   mutate(sum = sum(transaction_amt)) %>%
   select(cand_id, cand_name, cand_party_affiliation, name, cmte_party_affiliation, sum) %>%
   distinct(sum,cand_id, cand_name, cand_party_affiliation, name, cmte_party_affiliation) 
@@ -154,8 +155,8 @@ top_5 <- function(name_arg) {
     filter(cand_name == name_arg) %>%
       arrange(desc(sum)) %>%
       head(5)
-  
 }
+
 ROBY <- top_5( "ROBY, MARTHA")
 ROBY
 ```
