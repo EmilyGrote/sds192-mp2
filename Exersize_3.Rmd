@@ -8,13 +8,14 @@ output:
 ---
 
 This chunck loads the tidyverse:
+
 ```{r message=FALSE}
 library(tidyverse)
 ```
 
 [LINK TO MINI-PROJECT 2 DESCRIPTION](https://beanumber.github.io/sds192/mod_data.html)
 
-This chunck loads all the files available for the project through 
+This chunck loads all the files available for the project through:
 ```{r}
 load("house_elections.rda")
 load("candidates.rda")
@@ -23,40 +24,8 @@ load("contributions.rda")
 ```
 
 
-Current Plan:
+We designed a function to see which top 5 commitees contributed to a specific canditate and how much the committee contributed.  The graphic also displays the party the committee is affiliated with.  This is the path we took to develop the function.  First we chose which columns we wanted to work with from the candidates dataset.   Then we filtered out for Nancy Pleosi.   
 
-Design a function to see which top ~5 commities contributed, how much they contributed, and which party the commitie is affiliated with.  Then graph this information in the best way possible.  Then use a facet to graph multiple politians at one time on the same figure.  
-
-
-Things To Use for Points:
-
-* 2 of the 5 basic words (select(),  mutate(), etc.)
-* Using a Join 
-* If we use a function for this, there is a bonus point involved.  If we start with a function design from the begining, this point will be easier 
-
-
-
-
-
-I think the general plan could be (sorry for spelling errors):
-
-I think Joining Candidates and contributions by Cand_ID is a good plan 
-
-Candidate name = Candidate ID  %>%
-Donations for the Candidates from Conrtibutions using Candidate ID  %>%
-Referencing back to commitiees data set for the name for committee ID = Commitee name %>%
-Sorting descending popularity %>%
-head(5)
-
-Generic Plotting Plan:
-$ = y-axis
-committee = x-axis 
-Color of Bars = Political Party 
-
-NEW:
-
-
-For the following code I selected the columns we care about for Nancy Pelosi to see what it looks like for one candidate and to shrink the dataset.
 
 ```{r}
 NancyPelosi <- candidates %>%
@@ -64,16 +33,14 @@ NancyPelosi <- candidates %>%
   filter(cand_name == 'PELOSI, NANCY')
 ```
 
-I joined two of the three tables that we want
+Then we created a new dataset by joining Nancy Pelosi and contributions by using the left_join function.
 
 ```{r}
 cand_contr <- left_join(NancyPelosi, contributions)
 ```
 
-Here I joined the third table, grouped by the name of the commitee, summarized the contirbution amounts and displayed the top 5.
 
-
-I changed this chunk, in order to have commitee party affiliation for the graph in the next chunch, the summmerize had to be changed to mutate.  This stopped top_n() from working, so I changed it to arrange and head.  Then I thought you could use distinct(sum) to get rid off all of the reapeating sum values, but now its the same problem I was trying to avoid 
+We next combined the candiates and contributions dataset we created with committees and selected the folllowing columns: candidate ID, candidate name, candidate party affiliation, name, transcation amount and committee party affiliation.  Then we created a new column that was the sum of all transactions and used the disticng function to remove redundancies in the rows.  We then arranges them in descending order by sum and took the top 5 observations.  This was done in order to obtain a table that had the highest contributing committees for Nancy Pelosi.
 
 
 ```{r}
@@ -87,27 +54,6 @@ cand_contr_comm <- left_join(cand_contr, committees) %>%
   head(5)
 ```
 
-
-
-
-The top 4 commitees that contibuted to Nacy Pelosi were commitees that fundraised exlussively for her.  The fifth looks like a group that fundraises for Democrats.  Overall, this isn't very interesting.  Maybe we can look at Republicans and see if they took money from the NRA.  Let me know what you think!  
-
-
-
-
-UPDATE: I have some questions:
-
-I think looking at Republicans and the NRA is a good idea.
-
-My questions are about cand_contr_comm.  Why use summarize instead of mutate? Also Im not sure that sum(transaction_amt) is doing what we want it to.
-
-
-
-
-Respons New:
-This looks like a really GREAT start! I'm going to plot the tbl you made and then see if I can generalize your code into a function:
-
-Chunk below, graphs a bar bones plot.  We need one more variable, the party affiliation of the commitee, so I will see What I can do about trying to add it to the CAND_CONTR_COMM tbl
 ```{r}
 ggplot(cand_contr_comm, aes(x=name, y=sum, fill="cmte_party_affiliation"))+
   geom_histogram(stat="identity") + 
@@ -115,14 +61,12 @@ ggplot(cand_contr_comm, aes(x=name, y=sum, fill="cmte_party_affiliation"))+
 ```
 
 
+We used ggplot to create a bargraph of the top 5 committees that contributed funds to Nancy Pelosi.  The bars idealy would be color coded by party affiliation, howver the top 5 commitees were commitees that fundraised exlussively for Nnacy Pelosi.  Overall, this was not very interesting so we created a function in order to look at other candiates quickly without repeating all the code.
 
 
 
 
-Below I started working on a generalized Function that makes the tbl (#1 step at a time):
-(Be warnded its a mess)
-
-Makes a large table that joins the data by candidates (In theory this is like the step you did just for Nancy Pelosi, so we should be able to)
+In the next code chunk we made a large table that joined the data by candidates.
 
 ```{r}
 cand_contr_start <- candidates %>%
@@ -130,12 +74,12 @@ cand_contr_start <- candidates %>%
 ```
 
 
-
 ```{r}
 cand_contrULTRA <- left_join(cand_contr_start, contributions) 
 ```
 
-This gives a master list with all candidates, cand_id, candidates party affiliation, the name of each donation, donation amount, and the type of organization each donation is 
+Then, we  created a master list with all candidates, candidate ID, candidates party affiliation, the name of each donation, donation amount, and the type of organization each donation is from. 
+
 ```{r}
 cand_cantrULTRA2 <- left_join(cand_contrULTRA, committees) %>%
   select(cand_id, cand_name, cand_party_affiliation, name, transaction_amt, entity_type, cmte_party_affiliation) %>%
@@ -146,8 +90,8 @@ cand_cantrULTRA2 <- left_join(cand_contrULTRA, committees) %>%
 ```
 
 
-[^1]
-The function below makes the desired graph for any candidate.  
+
+The function below makes the desired graph for any candidate.  By choosing any candiate and running it throught the function "top_5", a graphic is produced that shows the top 5 contributing committees. 
 
 ```{r}
 top_5 <- function(name_arg) {
@@ -163,7 +107,7 @@ top_5 <- function(name_arg) {
 ROBY <- top_5( "ROBY, MARTHA")
 ROBY
 ```
-
+[^1]
 
 [^1]: [This is the link to the github repository](https://github.com/EmilyGrote/sds192-mp2.git)
 
