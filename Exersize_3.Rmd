@@ -75,7 +75,7 @@ cand_contr_start <- candidates %>%
 cand_contrULTRA <- left_join(cand_contr_start, contributions) 
 ```
 
-Then, we created a master list with all candidates, candidate ID, candidates party affiliation, name of each donation, donation amount, and the type of organization each donation is from.
+Then, we created a master list with all candidates, candidate ID, candidates party affiliation, name of each donation, donation amount, and the type of organization each donation is from. This table was then manipulated to contain the amount contributed by each commitee.  Row redundencies were eliminated with the distinct() command.  
 
 ```{r}
 cand_cantrULTRA2 <- left_join(cand_contrULTRA, committees) %>%
