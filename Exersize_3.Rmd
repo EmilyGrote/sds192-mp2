@@ -146,21 +146,23 @@ cand_cantrULTRA2 <- left_join(cand_contrULTRA, committees) %>%
 ```
 
 
-
-Below, I am working on trying to make the function, but im already encountering a problem, the output has zero rows... I'm not sure why though. 
 [^1]
+The function below makes the desired graph for any candidate.  
+
 ```{r}
 top_5 <- function(name_arg) {
-  cand_cantrULTRA2 %>%
+  plot_data <- cand_cantrULTRA2 %>%
     filter(cand_name == name_arg) %>%
-      arrange(desc(sum)) %>%
-      head(5)
+    arrange(desc(sum)) %>%
+    head(5)
+  ggplot(plot_data,  aes(x=name, y=sum, fill="cmte_party_affiliation"))+
+    geom_histogram(stat="identity")
 }
+
 
 ROBY <- top_5( "ROBY, MARTHA")
 ROBY
 ```
-
 
 
 [^1]: [This is the link to the github repository](https://github.com/EmilyGrote/sds192-mp2.git)
