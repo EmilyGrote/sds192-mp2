@@ -1,7 +1,7 @@
 ---
 title: "Mini-Project-2"
 author: "Emily and Stephanie"
-date: "3/7/2018"
+date: "3/22/2018"
 output: 
   html_document:
     code_folding: hide
@@ -23,6 +23,7 @@ load("committees.rda")
 load("contributions.rda")
 ```
 
+We decided to explore the connection between candidates and committee party affiliation and contribution.  We used the datasets, candidates, committees and contributions to explore this relationship.
 
 We designed a function to see which top 5 committees contributed to a specific candidate and how much the committee contributed.  The graphic also displays the party the committee is affiliated with.  This is the path we took to develop the function.  First we chose which columns we wanted to work with from the candidate’s dataset.  Then we filtered out for Nancy Pleosi.   
 
