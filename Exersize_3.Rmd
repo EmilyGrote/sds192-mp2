@@ -3,7 +3,6 @@ title: "Mini-Project-2"
 author: "Emily and Stephanie"
 date: "3/22/2018"
 output:
-  pdf_document: default
   html_document:
     code_folding: hide
 ---
