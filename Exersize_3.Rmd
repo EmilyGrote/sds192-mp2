@@ -118,7 +118,7 @@ ROBY
 ```
 
 
-We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This results in all of the bars being coded the same color, for NA. It appears that we do not have a lot of information about committee affiliation, indicating that these grouped are alighted with a candidate over a political party.
+We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This results in all of the bars being coded the same color, for NA. It appears that we do not have a lot of information about committee affiliation, indicating that these grouped are alighted with a candidate over a political party.  Overall, since most committees were not affiliated with a party, we decided to exclude the fill since it did not add value to our plot.
 
 
 
