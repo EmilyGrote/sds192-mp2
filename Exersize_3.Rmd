@@ -59,7 +59,7 @@ cand_contr_comm <- left_join(cand_contr, committees) %>%
 ggplot(cand_contr_comm, aes(x=name, y=sum))+
   geom_histogram(stat="identity") + 
   labs(y="Dollars Contributed", x="Committee Name", title="Committee Contribution to Nancy Pelosi")+
-  theme_economist_white()+
+  theme_minimal()+
   theme(axis.title.x = element_text(size=10),
            axis.text.x  = element_text(angle=90, vjust=0.5, size=10))
   
@@ -101,9 +101,10 @@ top_5 <- function(name_arg) {
     filter(cand_name == name_arg) %>%
     arrange(desc(sum)) %>%
     head(5)
-  ggplot(plot_data,  aes(x=name, y=sum, fill="cmte_party_affiliation"))+
+  ggplot(plot_data,  aes(x=name, y=sum))+
     geom_histogram(stat="identity")+
     labs(y="Dollars Contributed", x="Committee Name", title="Committee Contribution to name_arg")+
+    theme_minimal()+
   theme(axis.title.x = element_text( size=10),
            axis.text.x  = element_text(angle=90, vjust=0.5, size=10))
 }
