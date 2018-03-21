@@ -11,6 +11,7 @@ This chunck loads the tidyverse:
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
+library(ggthemes)
 ```
 
 [LINK TO MINI-PROJECT 2 DESCRIPTION](https://beanumber.github.io/sds192/mod_data.html)
@@ -55,11 +56,13 @@ cand_contr_comm <- left_join(cand_contr, committees) %>%
 ```
 
 ```{r message=FALSE, warning=FALSE}
-ggplot(cand_contr_comm, aes(x=name, y=sum, fill="cmte_party_affiliation"))+
+ggplot(cand_contr_comm, aes(x=name, y=sum))+
   geom_histogram(stat="identity") + 
   labs(y="Dollars Contributed", x="Committee Name", title="Committee Contribution to Nancy Pelosi")+
+  theme_economist_white()+
   theme(axis.title.x = element_text(size=10),
            axis.text.x  = element_text(angle=90, vjust=0.5, size=10))
+  
 ```
 
 We used ggplot to create a bar graph of the top 5 committees that contributed funds to Nancy Pelosi. The bars ideally would be color-coded by party affiliation, however the top 5 committees were committees that fundraised exclusively for Nancy Pelosi.  Overall, this was not very interesting so we created a function in order to look at other candidates quickly without repeating all the code.
