@@ -26,8 +26,7 @@ load("contributions.rda")
 
 We decided to explore the connection between candidates and committee party affiliation and contribution.  We used the datasets candidates, committees and contributions to explore this relationship.  Additionally, we used GitHub to work over break.[^1]
 
-We designed a function to see which top 5 committees contributed to a specific candidate and how much money was contributed.  Intiallt the graphic was going to 
-display the committee party affiliation, however most committees did not have party ties so we decided to exclude this information in our final graphs. Detailed below is the path we took to develop the function.  
+We designed a function to see which top 5 committees contributed to a specific candidate and how much money was contributed.  Initially the graphic was going to display the committee party affiliation, however most committees did not have party ties. We decided to exclude this information in our final graphs. Detailed below is the path we took to develop the function.  
 
 First, we chose which columns we wanted to work with from the candidate’s dataset.  Then we decided to explore Nancy Pelosi's connection with committees, so we filtered out for Nancy Pelosi.   
 
@@ -66,7 +65,7 @@ ggplot(cand_contr_comm, aes(x=name, y=sum))+
 
 ```
 
-We used ggplot to create a bar graph of the top 5 committees that contributed funds to Nancy Pelosi. The bars ideally would have been color-coded by party affiliation; however the top 5 committees were committees that fundraised exclusively for Nancy Pelosi.  An issue we had here, was that the top 2 committees for Nancy Pelosi had the same name, so R stacked them in the same bar. Overall, this was not very interesting, so we created a function in order to look at other candidates quickly without repeating all the code.
+We used ggplot to create a bar graph of the top 5 committees that contributed funds to Nancy Pelosi. The bars ideally would have been color-coded by party affiliation; however the top 5 committees were committees that fundraised exclusively for Nancy Pelosi.  An issue we had here, was that the top 2 committees for Nancy Pelosi had the same name, so R stacked them in the same bar. Nancy Pelosi's top 5 committees were all directly aligned with her and not a political party. Overall, this was not very interesting, so we created a function in order to look at other candidates quickly without repeating all the code.
 
 
 
@@ -109,16 +108,14 @@ top_5 <- function(name_arg) {
           axis.text.x  = element_text(angle=90, vjust=0.5, size=10))
 }
 ```
-
-
 In the next chunk we selected Jeff Denham, a random republican contained within the data set, and ran the name though the function "top_5"
 ```{r message=FALSE, warning=FALSE}
-ROBY <- top_5( "DENHAM, JEFF")
-ROBY
+Jeff <- top_5( "DENHAM, JEFF")
+Jeff
 ```
 
 
-We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This results in all of the bars being coded the same color, for NA. Overal it appears that most committees do not have a party affiliation. This interesting because we know that they back a specific candidate that is affiliated with a political party, indicating the committees should have a party affiliation. 
+We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This interesting because we know that they back a specific candidate that is affiliated with a political party, indicating the committees should have a party affiliation. 
 
 
 ####Word Counter:
