@@ -103,7 +103,7 @@ top_5 <- function(name_arg) {
     head(5)
   ggplot(plot_data,  aes(x=name, y=sum))+
     geom_histogram(stat="identity")+
-    labs(y="Dollars Contributed", x="Committee Name", title="Committee Contribution to name_arg")+
+    labs(y="Dollars Contributed", x="Committee Name", title=name_arg)+
     theme_minimal()+
   theme(axis.title.x = element_text( size=10),
            axis.text.x  = element_text(angle=90, vjust=0.5, size=10))
@@ -119,7 +119,6 @@ ROBY
 
 
 We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This results in all of the bars being coded the same color, for NA. It appears that we do not have a lot of information about committee affiliation, indicating that these grouped are aligned with a candidate over a political party.  Overall, since most committees were not affiliated with a party, we decided to exclude the fill since it did not add value to our plot.
-
 
 
 
