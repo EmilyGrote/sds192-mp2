@@ -26,8 +26,10 @@ load("contributions.rda")
 
 We decided to explore the connection between candidates and committee party affiliation and contribution.  We used the datasets candidates, committees and contributions to explore this relationship.  Additionally, we used GitHub to work over break.[^1]
 
-We designed a function to see which top 5 committees contributed to a specific candidate and how much the committee contributed.  The graphic also displays the party the committee is affiliated with.  This is the path we took to develop the function.  First, we chose which columns we wanted to work with from the candidate’s dataset.  Then we filtered out for Nancy Pleosi.   
+We designed a function to see which top 5 committees contributed to a specific candidate and how much money was contributed.  Intiallt the graphic was going to 
+display the committee party affiliation, however most committees did not have party ties so we decided to exclude this information in our final graphs. Detailed below is the path we took to develop the function.  
 
+First, we chose which columns we wanted to work with from the candidate’s dataset.  Then we decided to explore Nancy Pelosi's connection with committees, so we filtered out for Nancy Pelosi.   
 
 ```{r message=FALSE, warning=FALSE}
 NancyPelosi <- candidates %>%
@@ -40,7 +42,6 @@ Then we created a new dataset by joining Nancy Pelosi and contributions by using
 ```{r message=FALSE, warning=FALSE}
 cand_contr <- left_join(NancyPelosi, contributions)
 ```
-
 
 We next combined the candidates and contributions dataset we created with committees and selected the following columns: candidate ID, candidate name, candidate party affiliation, name, transaction amount and committee party affiliation.  Then we created a new column that was the sum of all transactions and used the distinct() function to remove redundancies in the rows.  We then arranged them in descending order by sum and took the top 5 observations. This was done in order to obtain a table that had the highest contributing committees for Nancy Pelosi.
 
