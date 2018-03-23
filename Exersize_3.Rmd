@@ -65,7 +65,7 @@ ggplot(cand_contr_comm, aes(x=name, y=sum))+
   
 ```
 
-We used ggplot to create a bar graph of the top 5 committees that contributed funds to Nancy Pelosi. The bars ideally would be color-coded by party affiliation, however the top 5 committees were committees that fundraised exclusively for Nancy Pelosi.  Overall, this was not very interesting so we created a function in order to look at other candidates quickly without repeating all the code.
+We used ggplot to create a bar graph of the top 5 committees that contributed funds to Nancy Pelosi. The bars ideally would be color-coded by party affiliation, however the top 5 committees were committees that fundraised exclusively for Nancy Pelosi.  An issue we had here, was that the top 2 committees for Nancy Pelosi had the same name, so R stacked them in the same bar.  That is why we only have 4 committees in our graph above.  Overall, this was not very interesting so we created a function in order to look at other candidates quickly without repeating all the code.
 
 
 
