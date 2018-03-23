@@ -26,7 +26,7 @@ load("contributions.rda")
 
 We decided to explore the connection between candidates and committee party affiliation and contribution.  We used the datasets candidates, committees and contributions to explore this relationship.  Additionally, we used GitHub to work over break.[^1]
 
-We designed a function to see which top 5 committees contributed to a specific candidate and how much the committee contributed.  The graphic also displays the party the committee is affiliated with.  This is the path we took to develop the function.  First we chose which columns we wanted to work with from the candidate’s dataset.  Then we filtered out for Nancy Pleosi.   
+We designed a function to see which top 5 committees contributed to a specific candidate and how much the committee contributed.  The graphic also displays the party the committee is affiliated with.  This is the path we took to develop the function.  First, we chose which columns we wanted to work with from the candidate’s dataset.  Then we filtered out for Nancy Pleosi.   
 
 
 ```{r message=FALSE, warning=FALSE}
@@ -65,11 +65,11 @@ ggplot(cand_contr_comm, aes(x=name, y=sum))+
   
 ```
 
-We used ggplot to create a bar graph of the top 5 committees that contributed funds to Nancy Pelosi. The bars ideally would be color-coded by party affiliation, however the top 5 committees were committees that fundraised exclusively for Nancy Pelosi.  An issue we had here, was that the top 2 committees for Nancy Pelosi had the same name, so R stacked them in the same bar.  That is why we only have 4 committees in our graph above.  Overall, this was not very interesting so we created a function in order to look at other candidates quickly without repeating all the code.
+We used ggplot to create a bar graph of the top 5 committees that contributed funds to Nancy Pelosi. The bars ideally would be color-coded by party affiliation; however the top 5 committees were committees that fundraised exclusively for Nancy Pelosi.  An issue we had here, was that the top 2 committees for Nancy Pelosi had the same name, so R stacked them in the same bar.  That is why we only have 4 committees in our graph above.  Overall, this was not very interesting, so we created a function in order to look at other candidates quickly without repeating all the code.
 
 
 
-In the next code chunk we made a large table that joined the data by candidates.
+In the next code chunk, we made a large table that joined the data by candidates.
 
 ```{r message=FALSE, warning=FALSE}
 cand_contr_start <- candidates %>%
