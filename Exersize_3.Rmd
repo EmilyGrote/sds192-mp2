@@ -62,8 +62,8 @@ ggplot(cand_contr_comm, aes(x=name, y=sum))+
   labs(y="Dollars Contributed", x="Committee Name", title="Committee Contribution to Nancy Pelosi")+
   theme_minimal()+
   theme(axis.title.x = element_text(size=10),
-           axis.text.x  = element_text(angle=90, vjust=0.5, size=10))
-  
+        axis.text.x  = element_text(angle=90, vjust=0.5, size=10))
+
 ```
 
 We used ggplot to create a bar graph of the top 5 committees that contributed funds to Nancy Pelosi. The bars ideally would have been color-coded by party affiliation; however the top 5 committees were committees that fundraised exclusively for Nancy Pelosi.  An issue we had here, was that the top 2 committees for Nancy Pelosi had the same name, so R stacked them in the same bar. Overall, this was not very interesting, so we created a function in order to look at other candidates quickly without repeating all the code.
@@ -105,8 +105,8 @@ top_5 <- function(name_arg) {
     geom_histogram(stat="identity")+
     labs(y="Dollars Contributed", x="Committee Name", title=name_arg)+
     theme_minimal()+
-  theme(axis.title.x = element_text( size=10),
-           axis.text.x  = element_text(angle=90, vjust=0.5, size=10))
+    theme(axis.title.x = element_text( size=10),
+          axis.text.x  = element_text(angle=90, vjust=0.5, size=10))
 }
 ```
 
@@ -119,8 +119,6 @@ ROBY
 
 
 We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This results in all of the bars being coded the same color, for NA. Overal it appears that most committees do not have a party affiliation. This interesting because we know that they back a specific candidate that is affiliated with a political party, indicating the committees should have a party affiliation. 
-
-
 
 
 ####Word Counter:
