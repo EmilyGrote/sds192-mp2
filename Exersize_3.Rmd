@@ -66,7 +66,7 @@ ggplot(cand_contr_comm, aes(x=name, y=sum))+
   
 ```
 
-We used ggplot to create a bar graph of the top 5 committees that contributed funds to Nancy Pelosi. The bars ideally would be color-coded by party affiliation; however the top 5 committees were committees that fundraised exclusively for Nancy Pelosi.  An issue we had here, was that the top 2 committees for Nancy Pelosi had the same name, so R stacked them in the same bar.  That is why we only have 4 committees in our graph above.  Overall, this was not very interesting, so we created a function in order to look at other candidates quickly without repeating all the code.
+We used ggplot to create a bar graph of the top 5 committees that contributed funds to Nancy Pelosi. The bars ideally would have been color-coded by party affiliation; however the top 5 committees were committees that fundraised exclusively for Nancy Pelosi.  An issue we had here, was that the top 2 committees for Nancy Pelosi had the same name, so R stacked them in the same bar. Overall, this was not very interesting, so we created a function in order to look at other candidates quickly without repeating all the code.
 
 
 
@@ -93,7 +93,6 @@ cand_cantrULTRA2 <- left_join(cand_contrULTRA, committees) %>%
   distinct(sum,cand_id, cand_name, cand_party_affiliation, name, cmte_party_affiliation) 
 ```
 
-
 The function below makes the desired graph for any candidate.  Choosing any candidate and running it through the function “top_5” produces a graphic that shows the top 5 contributing committees.
 
 ```{r message=FALSE, warning=FALSE}
@@ -119,7 +118,8 @@ ROBY
 ```
 
 
-We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This results in all of the bars being coded the same color, for NA. It appears that we do not have a lot of information about committee affiliation, indicating that these grouped are aligned with a candidate over a political party.  Overall, since most committees were not affiliated with a party, we decided to exclude the fill since it did not add value to our plot.
+We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This results in all of the bars being coded the same color, for NA. Overal it appears that most committees do not have a party affiliation. This interesting because we know that they back a specific candidate that is affiliated with a political party, indicating the committees should have a party affiliation. 
+
 
 
 
