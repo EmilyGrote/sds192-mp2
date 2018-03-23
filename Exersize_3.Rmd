@@ -103,7 +103,7 @@ top_5 <- function(name_arg) {
     head(5)
   ggplot(plot_data,  aes(x=name, y=sum))+
     geom_histogram(stat="identity")+
-    labs(y="Dollars Contributed", x="Committee Name", title="Committee Contribution to name_arg")+
+    labs(y="Dollars Contributed", x="Committee Name", title=name_arg)+
     theme_minimal()+
   theme(axis.title.x = element_text( size=10),
            axis.text.x  = element_text(angle=90, vjust=0.5, size=10))
