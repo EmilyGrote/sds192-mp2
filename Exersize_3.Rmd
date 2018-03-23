@@ -7,7 +7,7 @@ output:
     code_folding: hide
 ---
 
-This chunck loads the tidyverse:
+This chunk loads the tidyverse:
 
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -16,7 +16,7 @@ library(ggthemes)
 
 [LINK TO MINI-PROJECT 2 DESCRIPTION](https://beanumber.github.io/sds192/mod_data.html)
 
-This chunck loads all the files available for the project through:
+This chunk loads all the files available for the project through:
 ```{r message=FALSE, warning=FALSE}
 load("house_elections.rda")
 load("candidates.rda")
@@ -111,7 +111,7 @@ top_5 <- function(name_arg) {
 ```
 
 
-In the next chunck we selected Jeff Denham, a random republican contained within the data set, and ran the name though the function "top_5"
+In the next chunk we selected Jeff Denham, a random republican contained within the data set, and ran the name though the function "top_5"
 ```{r message=FALSE, warning=FALSE}
 ROBY <- top_5( "DENHAM, JEFF")
 ROBY
