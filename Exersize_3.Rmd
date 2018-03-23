@@ -122,8 +122,10 @@ We noticed after running the function a few times that a lot of committees are n
 
 
 
-Word Count: 526
-
+Word Counter:
+```{r}
+wordcountaddin::text_stats("Exersize_3.Rmd")
+```
 
 [^1]: [This is the link to the github repository](https://github.com/EmilyGrote/sds192-mp2.git)
 
