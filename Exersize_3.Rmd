@@ -122,7 +122,7 @@ We noticed after running the function a few times that a lot of committees are n
 
 
 
-Word Counter:
+####Word Counter:
 ```{r}
 wordcountaddin::text_stats("Exersize_3.Rmd")
 ```
