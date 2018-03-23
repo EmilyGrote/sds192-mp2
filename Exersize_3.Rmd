@@ -111,14 +111,14 @@ top_5 <- function(name_arg) {
 ```
 
 
-In the next chunck we selected Martha Roby, a random republican contained within the data set, and ran the name though the function "top_5"
+In the next chunck we selected Jeff Denham, a random republican contained within the data set, and ran the name though the function "top_5"
 ```{r message=FALSE, warning=FALSE}
 ROBY <- top_5( "DENHAM, JEFF")
 ROBY
 ```
 
 
-We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This results in all of the bars being coded the same color, for NA. It appears that we do not have a lot of information about committee affiliation, indicating that these grouped are aligned with a candidate over a political party.  The graph above is an example of a Republican candidate, Jeff Denham.  Overall, since most committees were not affiliated with a party, we decided to exclude the fill since it did not add value to our plot.
+We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This results in all of the bars being coded the same color, for NA. It appears that we do not have a lot of information about committee affiliation, indicating that these grouped are aligned with a candidate over a political party.  Overall, since most committees were not affiliated with a party, we decided to exclude the fill since it did not add value to our plot.
 
 
 
