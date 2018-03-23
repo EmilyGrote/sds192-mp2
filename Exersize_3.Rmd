@@ -24,7 +24,7 @@ load("committees.rda")
 load("contributions.rda")
 ```
 
-We decided to explore the connection between candidates and committee party affiliation and contribution.  We used the datasets, candidates, committees and contributions to explore this relationship.  Additionally, we used GitHub to work over break.[^1]
+We decided to explore the connection between candidates and committee party affiliation and contribution.  We used the datasets candidates, committees and contributions to explore this relationship.  Additionally, we used GitHub to work over break.[^1]
 
 We designed a function to see which top 5 committees contributed to a specific candidate and how much the committee contributed.  The graphic also displays the party the committee is affiliated with.  This is the path we took to develop the function.  First we chose which columns we wanted to work with from the candidate’s dataset.  Then we filtered out for Nancy Pleosi.   
 
@@ -118,7 +118,7 @@ ROBY
 ```
 
 
-We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This results in all of the bars being coded the same color, for NA. It appears that we do not have a lot of information about committee affiliation, indicating that these grouped are alighted with a candidate over a political party.  Overall, since most committees were not affiliated with a party, we decided to exclude the fill since it did not add value to our plot.
+We noticed after running the function a few times that a lot of committees are not affiliated with a party.  This results in all of the bars being coded the same color, for NA. It appears that we do not have a lot of information about committee affiliation, indicating that these grouped are aligned with a candidate over a political party.  Overall, since most committees were not affiliated with a party, we decided to exclude the fill since it did not add value to our plot.
 
 
 
